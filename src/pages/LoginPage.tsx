@@ -1,7 +1,7 @@
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography, Button, TextField } from "@mui/material";
 import React, { useState } from "react";
 import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import BackgroundImage from "../components/BackgroundImage";
 import { firebaseAuth } from "../utils/firebase-config";
@@ -26,12 +26,11 @@ export default function LoginPage() {
       <Box
         sx={{
           position: "absolute",
-
           top: 0,
           left: 0,
           backgroundColor: "rgba(0, 0, 0, 0.6)",
-          height: "100vh",
-          width: "100vw",
+          height: 747,
+          width: "100%",
           gridTemplateColumns: "15vh 85vh",
         }}
       >
@@ -54,14 +53,21 @@ export default function LoginPage() {
               justifyContent: "center",
               gap: "2rem",
               backgroundColor: "rgba(0,0,0,0.83)",
-              height: "70vh",
+              height: 550,
               padding: "2rem",
-              color: "white",
+              color: "#fff",
               borderRadius: "0.4rem",
             }}
           >
             <Box>
-              <Typography variant="h1">login</Typography>
+              <Typography
+                sx={{
+                  fontSize: "32px",
+                  fontWeight: 500,
+                }}
+              >
+                Oturum Aç
+              </Typography>
             </Box>
             <Box
               sx={{
@@ -70,30 +76,31 @@ export default function LoginPage() {
                 gap: "2rem",
               }}
             >
-              <input
-                type="text"
-                placeholder="Email"
+              <TextField
+                variant="outlined"
+                type="email"
+                label="E-posta  veya telefon numarası"
+                name="email"
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
-                style={{
-                  borderRadius: "0.4rem",
-                  padding: "0.5rem 1rem",
-                  width: "25rem",
-                  height: "2.9rem",
-                  outline: "none",
+                sx={{
+                  fontSize: "1.2rem",
+                  color: "black",
+                  backgroundColor: "#555555",
                 }}
               />
-              <input
+              <TextField
+                variant="outlined"
                 type="password"
-                placeholder="Password"
+                label="Parola"
+                name="password"
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
-                style={{
-                  borderRadius: "0.4rem",
-                  padding: "0.5rem 1rem",
+                sx={{
                   width: "25rem",
-                  height: "2.9rem",
-                  outline: "none",
+                  fontSize: "1.2rem",
+                  color: "black",
+                  backgroundColor: "#555555",
                 }}
               />
               <Button
@@ -115,9 +122,13 @@ export default function LoginPage() {
                     fontSize: "1.05rem",
                   }}
                 >
-                  Login
+                  Oturum Aç
                 </Typography>
               </Button>
+              <Typography>
+                Netflix'e katılmak ister misiniz?
+                <Link to="/signup"> Şimdi kaydolun</Link>
+              </Typography>
             </Box>
           </Box>
         </Box>

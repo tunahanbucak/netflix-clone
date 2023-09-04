@@ -8,6 +8,10 @@ import Card from "../components/Card";
 export default function Netflix() {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const navigate = useNavigate();
+  window.onscroll = () => {
+    setIsScrolled(window.pageYOffset === 0 ? false : true);
+    return () => (window.onscroll = null);
+  };
   return (
     <Box>
       <Box

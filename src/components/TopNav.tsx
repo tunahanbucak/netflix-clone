@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import { firebaseAuth } from "../utils/firebase-config";
 import { onAuthStateChanged, signOut } from "firebase/auth";
+import { Box, Button } from "@mui/material";
 
 interface TopNavProps {
   isScrolled: boolean;
@@ -22,13 +23,30 @@ export default function TopNav({ isScrolled }: TopNavProps) {
   return (
     <NavContainer>
       <nav className={`${isScrolled ? "scrolled" : "notScroll"}`}>
-        <div className="leftSide">
-          <div className="logo">
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: "2rem",
+            marginLeft: "5rem",
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             <img
               src="https://res.cloudinary.com/ehizeex-shop/image/upload/v1668265433/NetflixApp/2560px-Netflix_2015_logo.svg_rbicwl_knwp6f.png"
               alt="logo"
+              style={{
+                width: 100,
+                height: 20,
+              }}
             />
-          </div>
+          </Box>
           <ul className="links">
             {navlinks.map(({ name, link }) => {
               return (
@@ -38,12 +56,19 @@ export default function TopNav({ isScrolled }: TopNavProps) {
               );
             })}
           </ul>
-        </div>
-        <div className="rightSide">
-          <button onClick={() => signOut(firebaseAuth)}>
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: "1rem",
+            marginRight: "1rem",
+          }}
+        >
+          <Button onClick={() => signOut(firebaseAuth)}>
             <ExitToAppIcon />
-          </button>
-        </div>
+          </Button>
+        </Box>
       </nav>
     </NavContainer>
   );

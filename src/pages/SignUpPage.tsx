@@ -1,18 +1,14 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import Header from "../components/Header";
 import BackgroundImage from "../components/BackgroundImage";
-import styled from "styled-components";
 import { firebaseAuth } from "../utils/firebase-config";
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-
-interface SignUpPageProps {
-  showPassword: boolean;
-}
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 export default function SignUpPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -87,16 +83,15 @@ export default function SignUpPage() {
             }}
           >
             {showPassword ? (
-              <input
-                style={{
-                  color: "black",
-                  padding: "1.5rem",
+              <TextField
+                sx={{
                   fontSize: "1.2rem",
-                  width: "45rem",
-                  ...focusStyles,
+                  color: "black",
+                  backgroundColor: "#555555",
                 }}
+                variant="outlined"
                 type="password"
-                placeholder="password"
+                label="Şifre"
                 name="password"
                 value={formValues.password}
                 onChange={(e) =>
@@ -107,16 +102,15 @@ export default function SignUpPage() {
                 }
               />
             ) : (
-              <input
-                style={{
-                  color: "black",
-                  padding: "1.5rem",
+              <TextField
+                sx={{
                   fontSize: "1.2rem",
-                  width: "45rem",
-                  ...focusStyles,
+                  color: "black",
+                  backgroundColor: "#555555",
                 }}
+                variant="outlined"
                 type="email"
-                placeholder="email address"
+                label="E-posta adresi"
                 name="email"
                 value={formValues.email}
                 onChange={(e) =>
@@ -142,6 +136,7 @@ export default function SignUpPage() {
                 }}
               >
                 <Typography>Başlayın</Typography>
+                <ArrowForwardIosIcon />
               </Button>
             ) : (
               <Button

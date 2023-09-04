@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "../axios";
 import YouTube from "react-youtube";
 import movieTrailer from "movie-trailer";
 import { Box, Typography } from "@mui/material";
+import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 
 const baseUrl = "https://image.tmdb.org/t/p/original/";
 interface Movie {
@@ -25,7 +27,6 @@ type SxProps = {
 export default function Card({ title, fetchUrl, isLargeRow }: CardProps) {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [trailerUrl, setTrailerUrl] = useState<string>("");
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -58,7 +59,6 @@ export default function Card({ title, fetchUrl, isLargeRow }: CardProps) {
         .catch((error) => console.log(error));
     }
   };
-
   return (
     <Box sx={{ color: "white" }}>
       <Typography variant="h5">{title}</Typography>

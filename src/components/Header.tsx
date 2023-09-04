@@ -17,7 +17,7 @@ export default function Header(props: any) {
           src="https://res.cloudinary.com/ehizeex-shop/image/upload/v1668265433/NetflixApp/2560px-Netflix_2015_logo.svg_rbicwl_knwp6f.png"
           alt="no internet connection"
           style={{
-            height: "3rem",
+            height: "48px",
             cursor: "pointer",
           }}
         />
@@ -36,7 +36,7 @@ export default function Header(props: any) {
           textTransform: "none",
         }}
       >
-        {props.login ? "Log In " : "Sign In"}
+        {props.login ? "Oturum Aç " : "Kayıt Ol"}
       </Button>
     </Box>
   );
