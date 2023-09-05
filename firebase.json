@@ -1,7 +1,10 @@
 {
   "hosting": {
-    "site": "netflix-8ba4d",
     "public": "build",
-    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
   }
 }
