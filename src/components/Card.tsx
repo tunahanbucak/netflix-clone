@@ -7,6 +7,7 @@ import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 
 const baseUrl = "https://image.tmdb.org/t/p/original/";
+
 interface Movie {
   id: number;
   name: string;
@@ -20,13 +21,11 @@ interface CardProps {
   isLargeRow: boolean;
 }
 
-type SxProps = {
-  [key: string]: React.CSSProperties;
-};
-
 export default function Card({ title, fetchUrl, isLargeRow }: CardProps) {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [trailerUrl, setTrailerUrl] = useState<string>("");
+  const scrollRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -38,6 +37,18 @@ export default function Card({ title, fetchUrl, isLargeRow }: CardProps) {
     };
     fetchData();
   }, [fetchUrl]);
+
+  const scrollLeft = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollLeft -= scrollRef.current.clientWidth;
+    }
+  };
+
+  const scrollRight = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollLeft += scrollRef.current.clientWidth;
+    }
+  };
 
   const opts = {
     height: "390",
@@ -59,44 +70,76 @@ export default function Card({ title, fetchUrl, isLargeRow }: CardProps) {
         .catch((error) => console.log(error));
     }
   };
+
   return (
-    <Box sx={{ color: "white" }}>
+    <Box sx={{ color: "white", position: "relative" }}>
       <Typography variant="h5">{title}</Typography>
       <Box
-        sx={
-          {
+        sx={{
+          display: "flex",
+          overflowY: "hidden",
+          position: "relative",
+        }}
+      >
+        <ArrowLeftIcon
+          onClick={scrollLeft}
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: 0,
+            transform: "translateY(-50%)",
+            zIndex: 1,
+            cursor: "pointer",
+            borderRadius: "50%",
+            background: "gray",
+            width: 50,
+            height: 50,
+          }}
+        />
+        <Box
+          ref={scrollRef}
+          sx={{
             display: "flex",
-            overflowY: "hidden",
             overflowX: "scroll",
             padding: "20px",
             "&::-webkit-scrollbar": {
               display: "none",
             },
-          } as SxProps
-        }
-      >
-        {movies?.map((movie) => (
-          <img
-            key={movie.id}
-            onClick={() => handleClick(movie)}
-            style={
-              {
+          }}
+        >
+          {movies?.map((movie) => (
+            <img
+              key={movie.id}
+              onClick={() => handleClick(movie)}
+              style={{
                 width: "100%",
                 objectFit: "contain",
                 maxHeight: isLargeRow ? 250 : 150,
                 transition: "transform 450ms",
                 marginRight: "10px",
-                "&:hover": {
-                  transform: isLargeRow ? "scale(1.09)" : "scale(1.08)",
-                },
-              } as SxProps
-            }
-            src={`${baseUrl}${
-              isLargeRow ? movie?.poster_path : movie?.backdrop_path
-            }`}
-            alt={movie.name}
-          />
-        ))}
+              }}
+              src={`${baseUrl}${
+                isLargeRow ? movie?.poster_path : movie?.backdrop_path
+              }`}
+              alt={movie.name}
+            />
+          ))}
+        </Box>
+        <ArrowRightIcon
+          onClick={scrollRight}
+          sx={{
+            position: "absolute",
+            top: "50%",
+            right: 0,
+            transform: "translateY(-50%)",
+            zIndex: 1,
+            cursor: "pointer",
+            borderRadius: "50%",
+            background: "gray",
+            width: 50,
+            height: 50,
+          }}
+        />
       </Box>
       {trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />}
     </Box>
