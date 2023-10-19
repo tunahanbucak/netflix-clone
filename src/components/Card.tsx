@@ -25,7 +25,6 @@ export default function Card({ title, fetchUrl, isLargeRow }: CardProps) {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [trailerUrl, setTrailerUrl] = useState<string>("");
   const scrollRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -37,19 +36,16 @@ export default function Card({ title, fetchUrl, isLargeRow }: CardProps) {
     };
     fetchData();
   }, [fetchUrl]);
-
   const scrollLeft = () => {
     if (scrollRef.current) {
       scrollRef.current.scrollLeft -= scrollRef.current.clientWidth;
     }
   };
-
   const scrollRight = () => {
     if (scrollRef.current) {
       scrollRef.current.scrollLeft += scrollRef.current.clientWidth;
     }
   };
-
   const opts = {
     height: "390",
     width: "100%",
@@ -57,7 +53,6 @@ export default function Card({ title, fetchUrl, isLargeRow }: CardProps) {
       autoplay: 1,
     },
   };
-
   const handleClick = (movie: Movie) => {
     if (trailerUrl) {
       setTrailerUrl("");
@@ -70,7 +65,6 @@ export default function Card({ title, fetchUrl, isLargeRow }: CardProps) {
         .catch((error) => console.log(error));
     }
   };
-
   return (
     <Box sx={{ color: "white", position: "relative" }}>
       <Typography variant="h5">{title}</Typography>
