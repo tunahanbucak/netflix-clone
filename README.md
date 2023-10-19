@@ -1,4 +1,4 @@
-CANLI PROJE : " https://netflix-8ba4d.web.app/"
+DEMO: 'https://netflix-8ba4d.firebaseapp.com/'
 
 # Getting Started with Create React App
 
