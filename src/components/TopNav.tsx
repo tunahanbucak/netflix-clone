@@ -1,10 +1,16 @@
-import React from "react";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import { firebaseAuth } from "../utils/firebase-config";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import { Box, Button } from "@mui/material";
+import {
+  AppBar,
+  Box,
+  Button,
+  List,
+  ListItem,
+  ListItemButton,
+} from "@mui/material";
 
 interface TopNavProps {
   isScrolled: boolean;
@@ -12,17 +18,29 @@ interface TopNavProps {
 export default function TopNav({ isScrolled }: TopNavProps) {
   const navlinks = [
     { name: "Home", link: "/" },
-    { name: "Tv Show", link: "/tv" },
+    { name: "Tv ", link: "/tv" },
     { name: "Movies", link: "/movie" },
   ];
   const navigate = useNavigate();
   onAuthStateChanged(firebaseAuth, (currentUser) => {
     if (!currentUser) navigate("/login");
   });
-
   return (
-    <NavContainer>
-      <nav className={`${isScrolled ? "scrolled" : "notScroll"}`}>
+    <AppBar>
+      <Box
+        sx={{
+          backgroundColor: isScrolled ? "black" : "transparent",
+          height: "6rem",
+          width: "100%",
+          justifyContent: "space-between",
+          position: "fixed",
+          zIndex: 2,
+          padding: " 0.4rem",
+          alignItems: " center",
+          transition: " 0.3s ease-in",
+          display: "flex",
+        }}
+      >
         <Box
           sx={{
             display: "flex",
@@ -47,15 +65,28 @@ export default function TopNav({ isScrolled }: TopNavProps) {
               }}
             />
           </Box>
-          <ul className="links">
-            {navlinks.map(({ name, link }) => {
-              return (
-                <li key={name}>
-                  <Link to={link}>{name}</Link>
-                </li>
-              );
-            })}
-          </ul>
+          <List
+            sx={{
+              display: "flex",
+              listStyleType: "none",
+              gap: " 3rem",
+            }}
+          >
+            {navlinks.map(({ name, link }) => (
+              <ListItem key={name} disablePadding>
+                <ListItemButton
+                  sx={{
+                    color: "white",
+                    textDecoration: "none",
+                  }}
+                  component={Link}
+                  to={link}
+                >
+                  {name}
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
         </Box>
         <Box
           sx={{
@@ -65,80 +96,26 @@ export default function TopNav({ isScrolled }: TopNavProps) {
             marginRight: "1rem",
           }}
         >
-          <Button onClick={() => signOut(firebaseAuth)}>
+          <Button
+            sx={{
+              backgroundColor: "red",
+              border: "none",
+              cursor: "pointer",
+              borderRadius: "50%",
+              "&:focus": {
+                outline: "none",
+              },
+              svg: {
+                color: "white",
+                fontSize: "2rem",
+              },
+            }}
+            onClick={() => signOut(firebaseAuth)}
+          >
             <ExitToAppIcon />
           </Button>
         </Box>
-      </nav>
-    </NavContainer>
+      </Box>
+    </AppBar>
   );
 }
-
-const NavContainer = styled.div`
-  .notScroll {
-    display: flex;
-  }
-  .scrolled {
-    display: flex;
-    background-color: black;
-  }
-  nav {
-    position: sticky;
-    top: 0;
-    height: 6rem;
-    width: 100%;
-    justify-content: space-between;
-    position: fixed;
-    z-index: 2;
-    padding: 0.4rem;
-    align-items: center;
-    transition: 0.3s ease-in;
-    .leftSide {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      margin-left: 5rem;
-
-      .logo {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      img {
-        width: 10rem;
-        height: 2rem;
-      }
-    }
-    .links {
-      display: flex;
-      list-style-type: none;
-      gap: 3rem;
-      li {
-        a {
-          color: white;
-          text-decoration: none;
-        }
-      }
-    }
-  }
-
-  .rightSide {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-right: 1rem;
-    button {
-      background-color: red;
-      border: none;
-      cursor: pointer;
-      border-radius: 50%;
-    }
-    &:focus {
-      outline: none;
-    }
-    svg {
-      color: white;
-      font-size: 2rem;
-    }
-  }
-`;
