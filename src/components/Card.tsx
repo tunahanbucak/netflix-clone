@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "../axios";
 import YouTube from "react-youtube";
 import movieTrailer from "movie-trailer";
@@ -7,20 +7,17 @@ import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 
 const baseUrl = "https://image.tmdb.org/t/p/original/";
-
 interface Movie {
   id: number;
   name: string;
   poster_path: string;
   backdrop_path: string;
 }
-
 interface CardProps {
   title: string;
   fetchUrl: string;
   isLargeRow: boolean;
 }
-
 export default function Card({ title, fetchUrl, isLargeRow }: CardProps) {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [trailerUrl, setTrailerUrl] = useState<string>("");

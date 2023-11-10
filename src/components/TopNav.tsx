@@ -1,5 +1,4 @@
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import { firebaseAuth } from "../utils/firebase-config";
 import { onAuthStateChanged, signOut } from "firebase/auth";
@@ -18,7 +17,7 @@ interface TopNavProps {
 export default function TopNav({ isScrolled }: TopNavProps) {
   const navlinks = [
     { name: "Home", link: "/" },
-    { name: "Tv ", link: "/tv" },
+    { name: "TvShow ", link: "/tv" },
     { name: "Movies", link: "/movie" },
   ];
   const navigate = useNavigate();
@@ -105,14 +104,15 @@ export default function TopNav({ isScrolled }: TopNavProps) {
               "&:focus": {
                 outline: "none",
               },
-              svg: {
-                color: "white",
-                fontSize: "2rem",
-              },
             }}
             onClick={() => signOut(firebaseAuth)}
           >
-            <ExitToAppIcon />
+            <ExitToAppIcon
+              sx={{
+                color: "white",
+                fontSize: "1.7rem",
+              }}
+            />
           </Button>
         </Box>
       </Box>

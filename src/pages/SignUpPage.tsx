@@ -1,5 +1,5 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
-import React, { useState } from "react";
+import { useState } from "react";
 import Header from "../components/Header";
 import BackgroundImage from "../components/BackgroundImage";
 import { firebaseAuth } from "../utils/firebase-config";
@@ -25,11 +25,6 @@ export default function SignUpPage() {
   onAuthStateChanged(firebaseAuth, (currentUser) => {
     if (currentUser) navigate("/");
   });
-
-  const focusStyles = {
-    outline: "none",
-  };
-
   return (
     <Box>
       <BackgroundImage />
