@@ -1,9 +1,0 @@
-{
-  "projects": {
-    "default": "netflix-8ba4d",
-    "production": "netflix-8ba4d",
-    "product": "netflix-8ba4d"
-  },
-  "targets": {},
-  "etags": {}
-}
