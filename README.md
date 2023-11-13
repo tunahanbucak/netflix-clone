@@ -1,5 +1,3 @@
-DEMO: 'https://netflix-8ba4d.web.app'
-Kayıt ol kısmından herhangi bir mail ile kayıt olup giriş yapabilirsiniz.
 
 # Getting Started with Create React App
 
