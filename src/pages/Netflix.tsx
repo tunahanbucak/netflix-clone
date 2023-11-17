@@ -91,7 +91,7 @@ export default function Netflix() {
                 backgroundColor: "red",
               }}
             >
-              <Typography> Play</Typography>
+              <Typography> Oynat</Typography>
             </Button>
             <Button
               sx={{
@@ -110,40 +110,48 @@ export default function Netflix() {
                 cursor: "pointer",
               }}
             >
-              <Typography>More</Typography>
+              <Typography>Daha fazla</Typography>
             </Button>
           </Box>
         </Box>
       </Box>
       <Card
-        title="NETFLIX ORIGINALS"
+        title="En Çok İzlenen"
         fetchUrl={requests.fetchNetflixOriginals}
         isLargeRow
       />
-      <Card title="Trending now" fetchUrl={requests.fetchTrending} isLargeRow />
-      <Card title="Top Rated" fetchUrl={requests.fetchTopRated} isLargeRow />
       <Card
-        title="Romance Movies"
+        title="Bu Aralar Moda"
+        fetchUrl={requests.fetchTrending}
+        isLargeRow
+      />
+      <Card
+        title="En Çok Oy Alan"
+        fetchUrl={requests.fetchTopRated}
+        isLargeRow
+      />
+      <Card
+        title="Romantik Filmler"
         fetchUrl={requests.fetchRomanceMovies}
         isLargeRow
       />
       <Card
-        title="Action Movies"
+        title="Aksiyon Filmler"
         fetchUrl={requests.fetchActionMovies}
         isLargeRow
       />
       <Card
-        title="Horror Movies"
+        title="Korku Filmler"
         fetchUrl={requests.fetchHorrorMovies}
         isLargeRow
       />
       <Card
-        title="Comedy Movies"
+        title="Komedi Filmler"
         fetchUrl={requests.fetchComedyMovies}
         isLargeRow
       />
       <Card
-        title="Documentaries"
+        title="Belgeseller"
         fetchUrl={requests.fetchDocumentaries}
         isLargeRow
       />

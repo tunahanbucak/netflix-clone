@@ -1,10 +1,13 @@
-import { Box } from "@mui/material";
+import { Box, Button, Link } from "@mui/material";
 import Card from "../components/Card";
 import requests from "../requests";
 
 export default function MoviePage() {
   return (
     <Box>
+      <Button>
+        <Link href="/">anasayfayaya don</Link>
+      </Button>
       <Card
         title="NETFLIX ORIGINALS"
         fetchUrl={requests.fetchNetflixOriginals}

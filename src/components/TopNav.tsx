@@ -16,9 +16,9 @@ interface TopNavProps {
 }
 export default function TopNav({ isScrolled }: TopNavProps) {
   const navlinks = [
-    { name: "Home", link: "/" },
-    { name: "TvShow ", link: "/tv" },
-    { name: "Movies", link: "/movie" },
+    { name: "Anasayfa", link: "/" },
+    { name: "Diziler ", link: "/tv" },
+    { name: "Filmler", link: "/movie" },
   ];
   const navigate = useNavigate();
   onAuthStateChanged(firebaseAuth, (currentUser) => {
