@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
-import SignUpPage from "./pages/SignUpPage";
-import Player from "./pages/Player";
-import TvShow from "./pages/TvShow";
-import Netflix from "./pages/Netflix";
-import MoviePage from "./pages/MoviePage";
+import LoginPage from "./views/LoginPage";
+import SignUpPage from "./views/SignUpPage";
+import Player from "./views/Player";
+import TvShow from "./views/TvShow";
+import Netflix from "./views/Netflix";
+import MoviePage from "./views/MoviePage";
 
 function App() {
   return (

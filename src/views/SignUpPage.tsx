@@ -128,6 +128,9 @@ export default function SignUpPage() {
                   fontSize: "1.05rem",
                   width: "10rem",
                   fontWeight: "bolder",
+                  ":hover": {
+                    backgroundColor: "red",
+                  }
                 }}
               >
                 <Typography>Başlayın</Typography>
@@ -145,6 +148,9 @@ export default function SignUpPage() {
                   fontSize: "1.05rem",
                   width: "10rem",
                   fontWeight: "bolder",
+                  ":hover": {
+                    backgroundColor: "red",
+                  }
                 }}
               >
                 <Typography>Üye olmak</Typography>
