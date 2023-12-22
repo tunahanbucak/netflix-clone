@@ -5,6 +5,33 @@ import { Box, Button, Typography } from "@mui/material";
 import requests from "../requests";
 import Card from "../components/Card";
 
+const categoryData = [
+  {
+    title: 'En Çok İzlenen'
+  },
+  {
+    title: 'Bu Aralar Moda'
+  },
+  {
+    title: 'En Çok Oy Alan'
+  },
+  {
+    title: 'Romantik Filmler'
+  },
+  {
+    title: 'Aksiyon Filmler'
+  },
+  {
+    title: 'Korku Filmler'
+  },
+  {
+    title: 'Komedi Filmler'
+  },
+  {
+    title: 'Belgeseller'
+  },
+]
+
 export default function Netflix() {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const navigate = useNavigate();
@@ -115,46 +142,15 @@ export default function Netflix() {
           </Box>
         </Box>
       </Box>
-      <Card
-        title="En Çok İzlenen"
-        fetchUrl={requests.fetchNetflixOriginals}
-        isLargeRow
-      />
-      <Card
-        title="Bu Aralar Moda"
-        fetchUrl={requests.fetchTrending}
-        isLargeRow
-      />
-      <Card
-        title="En Çok Oy Alan"
-        fetchUrl={requests.fetchTopRated}
-        isLargeRow
-      />
-      <Card
-        title="Romantik Filmler"
-        fetchUrl={requests.fetchRomanceMovies}
-        isLargeRow
-      />
-      <Card
-        title="Aksiyon Filmler"
-        fetchUrl={requests.fetchActionMovies}
-        isLargeRow
-      />
-      <Card
-        title="Korku Filmler"
-        fetchUrl={requests.fetchHorrorMovies}
-        isLargeRow
-      />
-      <Card
-        title="Komedi Filmler"
-        fetchUrl={requests.fetchComedyMovies}
-        isLargeRow
-      />
-      <Card
-        title="Belgeseller"
-        fetchUrl={requests.fetchDocumentaries}
-        isLargeRow
-      />
+      {categoryData.map((data, index) => (
+        <Card
+          key={index}
+          title={data.title}
+          fetchUrl={requests.fetchNetflixOriginals}
+          isLargeRow
+        />
+      ))}
+
     </Box>
   );
 }

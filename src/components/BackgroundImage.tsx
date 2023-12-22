@@ -10,7 +10,7 @@ export default function BackgroundImage() {
       }}
     >
       <img
-        src="https://assets.nflxext.com/ffe/siteui/vlv3/6c884f48-f7d8-4a59-9d25-b7c138813aee/1756a9bc-0731-4094-a4a0-fca5d0934d47/TR-tr-20230807-popsignuptwoweeks-perspective_alpha_website_large.jpg"
+        src="https://assets.nflxext.com/ffe/siteui/vlv3/563192ea-ac0e-4906-a865-ba9899ffafad/f70797df-0e1a-4e4a-b5de-089f9c544a0f/TR-tr-20231218-popsignuptwoweeks-perspective_alpha_website_large.jpg"
         alt=""
         style={{
           objectFit: "cover",
